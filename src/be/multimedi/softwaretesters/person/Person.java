@@ -2,6 +2,7 @@ package be.multimedi.softwaretesters.person;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 /**
  * @author Yannick Van Ham
@@ -44,5 +45,16 @@ public class Person {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public int calcAge() {
+        LocalDate today = LocalDate.now();
+        long age = ChronoUnit.YEARS.between(dateOfBirth, today);
+        return (int) age;
+    }
+
+    @Override
+    public String toString() {
+        return "My name is " + getFirstName() + " " + getSurname() + " and I am " + calcAge() + " years old";
     }
 }
